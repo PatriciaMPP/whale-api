@@ -1,4 +1,6 @@
 package io.github.patriciampp.whaleapi.model;
 
-public class Whale {
-}
+import javax.persistence.*;
+
+@Entity
+public class Whale extends WhaleAbstract {}
