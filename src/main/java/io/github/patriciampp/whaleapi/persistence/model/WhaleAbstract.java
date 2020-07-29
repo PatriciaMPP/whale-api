@@ -1,4 +1,4 @@
-package io.github.patriciampp.whaleapi.model;
+package io.github.patriciampp.whaleapi.persistence.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +32,7 @@ public abstract class WhaleAbstract{
             mappedBy = "whale",
             fetch = FetchType.EAGER
     )
-    private Set<FunFacts> funFacts = new HashSet<>();
+    private Set<FunFact> funFacts = new HashSet<>();
 
     @OneToMany(
             cascade = { CascadeType.ALL },

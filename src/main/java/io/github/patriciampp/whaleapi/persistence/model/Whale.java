@@ -1,4 +1,4 @@
-package io.github.patriciampp.whaleapi.model;
+package io.github.patriciampp.whaleapi.persistence.model;
 
 import javax.persistence.*;
 
