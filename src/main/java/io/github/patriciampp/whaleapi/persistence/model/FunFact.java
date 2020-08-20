@@ -1,4 +1,4 @@
-package io.github.patriciampp.whaleapi.model;
+package io.github.patriciampp.whaleapi.persistence.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,18 +12,25 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class FunFacts {
+public class FunFact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String funFact;
+    private String funFactText;
 
     @ManyToOne(
             cascade = { CascadeType.ALL },
             fetch = FetchType.EAGER
     )
     private Whale whale;
+
+    public FunFact(){}
+
+    public FunFact (String funFactText, Whale whale) {
+        this.funFactText = funFactText;
+        this.whale = whale;
+    }
 
 }
