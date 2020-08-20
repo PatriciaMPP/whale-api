@@ -40,41 +40,5 @@ public abstract class WhaleAbstract{
     )
     private Set<Diet> diets = new HashSet<>();
 
-    /*@Override
-    public String getSpecieName() { return specieName; }
-
-    @Override
-    public String getLatinName() { return latinName; }
-
-    @Override
-    public String getLifeSpan() { return lifeSpan; }
-
-    @Override
-    public Double getSize() { return size; }
-
-    @Override
-    public Double getWeight() { return weight; }
-
-    @Override
-    public String getDescription() { return description; }
-
-
-    @Override
-    public void setSpecieName (String specieName) { this.specieName = specieName; }
-
-    @Override
-    public void setLatinName (String latinName) { this.latinName = latinName; }
-
-    @Override
-    public void setLifeSpan (String lifeSpan) { this.lifeSpan = lifeSpan; }
-
-    @Override
-    public void setSize (Double size) { this.size = size; }
-
-    @Override
-    public void setWeight(Double weight) { this.weight = weight; }
-
-    @Override
-    public void setDescription(String description) { this.description = description; }*/
 }
 
