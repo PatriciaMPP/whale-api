@@ -13,7 +13,6 @@ package io.github.patriciampp.whaleapi.controller;
         import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
         import java.net.URI;
-        import java.util.Optional;
         import java.util.Set;
 
 @RestController
@@ -29,18 +28,36 @@ public class FunFactController {
     @Autowired
     private FunFactRepository funFactRepository;
 
-    
+
     @GetMapping(path = "/funfacts")
-    public ResponseEntity<Set<FunFact>> find(){
+    public ResponseEntity<Set<FunFact>> findAll(){
         return ResponseEntity.ok(funFactService.getAll());
+    }
+
+    @GetMapping(path = "/funfacts/{id}")
+    public ResponseEntity<FunFact> findById(@PathVariable ("id") int id){
+        FunFact funFact = funFactService.findById(id);
+        return ResponseEntity.ok(funFact);
+    }
+
+    @DeleteMapping(path = "/funfacts")
+    public ResponseEntity<Set<FunFact>> deleteAll(){
+        return ResponseEntity.ok(funFactService.deleteAll());
+    }
+
+    @DeleteMapping(path = "/funfacts/{id}")
+    public  ResponseEntity<Integer> deleteById(@PathVariable("id") int id) {
+
+        int deletedFunFact = funFactService.deleteById(id);
+        return ResponseEntity.ok(deletedFunFact);
     }
 
     @PostMapping(path = "/funfacts")
     public ResponseEntity<FunFact> create(@RequestBody JSONObject funFactJSON) {
-        Integer whaleId = (Integer) funFactJSON.get("whaleId");
+        int whaleId = (Integer) funFactJSON.get("whaleId");
         String funFactText = (String) funFactJSON.get("funFact");
 
-        Whale whale = whaleService.getById(whaleId);
+        Whale whale = whaleService.findById(whaleId);
         FunFact funFact = new FunFact(funFactText, whale);
 
         FunFact funFactCreated = funFactService.add(funFact);
@@ -59,6 +76,5 @@ public class FunFactController {
 
     }
 
-    /*Methods to practice SQL*/
 
 }

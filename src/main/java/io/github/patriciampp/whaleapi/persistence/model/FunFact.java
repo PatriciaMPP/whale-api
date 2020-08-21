@@ -26,7 +26,7 @@ public class FunFact {
     )
     private Whale whale;
 
-    public FunFact(){}
+    //public FunFact(){}
 
     public FunFact (String funFactText, Whale whale) {
         this.funFactText = funFactText;

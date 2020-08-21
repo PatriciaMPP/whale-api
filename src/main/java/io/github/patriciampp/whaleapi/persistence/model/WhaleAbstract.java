@@ -40,5 +40,14 @@ public abstract class WhaleAbstract{
     )
     private Set<Diet> diets = new HashSet<>();
 
+    public WhaleAbstract (String specieName, String latinName, String lifeSpan, String description, Double size, Double weight){
+        this.specieName = specieName;
+        this.latinName = latinName;
+        this.lifeSpan = lifeSpan;
+        this.description = description;
+        this.size = size;
+        this.weight = weight;
+
+    }
 }
 

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -23,7 +22,14 @@ public class FunFactService {
     private WhaleService whaleService;
 
     public Set<FunFact> getAll(){
+
+        funFactRepository.findAll();
         return funFacts;
+    }
+
+    public FunFact findById(int funFactId){
+
+        return funFactRepository.findById(funFactId).get();
     }
 
     public FunFact add(FunFact funFact){
@@ -31,8 +37,8 @@ public class FunFactService {
             funFacts = new HashSet<>();
         }
 
-        funFactRepository.save(funFact);
         funFacts.add(funFact);
+        funFactRepository.save(funFact);
         return funFact;
     }
 
@@ -42,7 +48,7 @@ public class FunFactService {
 
         funFact.setFunFactText(funFactText);
 
-        Whale whale = whaleService.getById((Integer) funFactJSON.get("whaleId"));
+        Whale whale = whaleService.findById((Integer) funFactJSON.get("whaleId"));
         funFact.setWhale(whale);
 
         funFactRepository.save(funFact);
@@ -50,18 +56,18 @@ public class FunFactService {
         return funFact;
     }
 
-    public void delete(FunFact funFact) {
-        funFacts.remove(funFact);
+    public Set<FunFact> deleteAll(){
+        funFactRepository.deleteAll();
+        return funFacts;
     }
 
+    public int deleteById (int funFactId) {
 
-    public FunFact findById(int id){
-      return funFactRepository.findById(id).get();
+        FunFact funFactToDelete = findById(funFactId);
+        funFactRepository.delete(funFactToDelete);
+        return funFactId;
+
     }
-
-
-
-
 
 
     //isJSONValid
