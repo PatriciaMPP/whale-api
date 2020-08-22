@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: io.github.patriciampp.whaleapi.WhaleApiApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.978 s - in io.github.patriciampp.whaleapi.WhaleApiApplicationTests

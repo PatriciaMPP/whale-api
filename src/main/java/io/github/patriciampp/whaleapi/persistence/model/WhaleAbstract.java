@@ -34,10 +34,7 @@ public abstract class WhaleAbstract{
     )
     private Set<FunFact> funFacts = new HashSet<>();
 
-    @OneToMany(
-            cascade = { CascadeType.ALL },
-            fetch = FetchType.EAGER
-    )
+    @ManyToMany
     private Set<Diet> diets = new HashSet<>();
 
     public WhaleAbstract (String specieName, String latinName, String lifeSpan, String description, Double size, Double weight){
@@ -47,7 +44,6 @@ public abstract class WhaleAbstract{
         this.description = description;
         this.size = size;
         this.weight = weight;
-
     }
 }
 

@@ -1,0 +1,14 @@
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/controller/DietController.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/controller/FunFactController.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/service/WhaleService.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/WhaleApiApplication.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/controller/WhaleController.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/persistence/model/WhaleAbstract.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/persistence/repository/DietRepository.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/persistence/repository/FunFactRepository.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/persistence/model/Whale.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/persistence/repository/WhaleRepository.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/persistence/model/Diet.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/service/DietService.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/persistence/model/FunFact.java
+/Users/patriciapires/Desktop/whale-api/src/main/java/io/github/patriciampp/whaleapi/service/FunFactService.java

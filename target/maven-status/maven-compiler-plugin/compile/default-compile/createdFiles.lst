@@ -1,0 +1,14 @@
+io/github/patriciampp/whaleapi/service/DietService.class
+io/github/patriciampp/whaleapi/WhaleApiApplication.class
+io/github/patriciampp/whaleapi/persistence/model/Whale.class
+io/github/patriciampp/whaleapi/controller/WhaleController.class
+io/github/patriciampp/whaleapi/controller/DietController.class
+io/github/patriciampp/whaleapi/controller/FunFactController.class
+io/github/patriciampp/whaleapi/persistence/model/FunFact.class
+io/github/patriciampp/whaleapi/persistence/repository/FunFactRepository.class
+io/github/patriciampp/whaleapi/persistence/repository/WhaleRepository.class
+io/github/patriciampp/whaleapi/persistence/model/Diet.class
+io/github/patriciampp/whaleapi/persistence/repository/DietRepository.class
+io/github/patriciampp/whaleapi/service/FunFactService.class
+io/github/patriciampp/whaleapi/service/WhaleService.class
+io/github/patriciampp/whaleapi/persistence/model/WhaleAbstract.class

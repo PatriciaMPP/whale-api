@@ -1,7 +1,7 @@
 package io.github.patriciampp.whaleapi.controller;
 
-import io.github.patriciampp.whaleapi.persistence.model.FunFact;
 import io.github.patriciampp.whaleapi.persistence.model.Whale;
+import io.github.patriciampp.whaleapi.persistence.model.WhaleAbstract;
 import io.github.patriciampp.whaleapi.service.WhaleService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +21,13 @@ public class WhaleController {
 
 
     @GetMapping(path = "/whales")
-    public ResponseEntity<Set<Whale>> find(){
+    public ResponseEntity<Iterable<Whale>> find(){
         return ResponseEntity.ok(whaleService.getAll());
     }
 
     @GetMapping(path = "/whales/{id}")
     public ResponseEntity<Whale> findById(@PathVariable ("id") int id){
-        Whale whale = whaleService.findById(id);
-        return ResponseEntity.ok(whale);
+        return ResponseEntity.ok(whaleService.findById(id));
     }
 
     @DeleteMapping(path = "/whales")
@@ -37,11 +36,11 @@ public class WhaleController {
     }
 
     @DeleteMapping(path = "/whales/{id}")
-    public ResponseEntity<Integer> deleteById(@PathVariable ("id") int id){
+    public ResponseEntity<Boolean> deleteById(@PathVariable ("id") int id){
         return ResponseEntity.ok(whaleService.deleteById(id));
     }
 
-    @PostMapping(path = "(whales")
+    @PostMapping(path = "/whales")
     public ResponseEntity<Whale> create(@RequestBody JSONObject whaleJSON){
         String specieName = whaleJSON.get("specieName").toString();
         String latinName = whaleJSON.get("latinName").toString();
@@ -50,7 +49,7 @@ public class WhaleController {
         Double size = (Double) whaleJSON.get("size");
         Double weight = (Double) whaleJSON.get("weight");
 
-        Whale whale = new Whale(specieName, latinName, lifeSpan, description, size, weight);
+        Whale whale = new Whale (specieName, latinName, lifeSpan, description, size, weight);
         Whale whaleCreated = whaleService.add(whale);
 
         URI whaleUri = ServletUriComponentsBuilder.fromCurrentRequest().path(whaleCreated.toString()).build().toUri();

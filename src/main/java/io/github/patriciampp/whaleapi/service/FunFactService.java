@@ -32,6 +32,19 @@ public class FunFactService {
         return funFactRepository.findById(funFactId).get();
     }
 
+    public Set<FunFact> deleteAll(){
+        funFactRepository.deleteAll();
+        return funFacts;
+    }
+
+    public FunFact deleteById (int funFactId) {
+
+        FunFact funFactToDelete = findById(funFactId);
+        funFactRepository.delete(funFactToDelete);
+        return funFactToDelete;
+
+    }
+
     public FunFact add(FunFact funFact){
         if(funFacts == null) {
             funFacts = new HashSet<>();
@@ -54,19 +67,6 @@ public class FunFactService {
         funFactRepository.save(funFact);
 
         return funFact;
-    }
-
-    public Set<FunFact> deleteAll(){
-        funFactRepository.deleteAll();
-        return funFacts;
-    }
-
-    public int deleteById (int funFactId) {
-
-        FunFact funFactToDelete = findById(funFactId);
-        funFactRepository.delete(funFactToDelete);
-        return funFactId;
-
     }
 
 
