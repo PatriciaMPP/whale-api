@@ -23,10 +23,11 @@ public class Diet {
 
     private String diet;
 
-    @ManyToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
+    @ManyToMany(mappedBy = "diets")
     private Set<Whale> whales = new HashSet<>();
+
+    public Diet(String diet){
+        this.diet = diet;
+    }
 
 }

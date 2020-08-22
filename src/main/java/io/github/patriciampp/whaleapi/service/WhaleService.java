@@ -7,26 +7,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
 public class WhaleService {
 
     private Set<Whale> whales;
-    private Whale whale;
-    private int whaleId;
 
     @Autowired
     private WhaleRepository whaleRepository;
 
-    public Set<Whale> getAll(){
-        whaleRepository.findAll();
-        return whales;
+    public Iterable<Whale> getAll(){
+        //Lists.newArrayList(whaleRepository.findAll());
+        return whaleRepository.findAll();
     }
 
     public Whale findById(int whaleId){
-        whaleRepository.findById(whaleId);
-        return whale;
+        return whaleRepository.findById(whaleId).get();
+    }
+
+    public Set<Whale> deleteAll(){
+        whaleRepository.deleteAll();
+        return whales;
+    }
+
+    public Boolean deleteById(int whaleId){
+
+        Whale whaleToDelete = findById(whaleId);
+
+        whales.remove(whaleToDelete);
+        whaleRepository.delete(whaleToDelete);
+        return !whaleRepository.existsById(whaleId);
     }
 
     public Whale add(Whale whale){
@@ -59,19 +71,6 @@ public class WhaleService {
         return whale;
     }
 
-    public Set<Whale> deleteAll(){
-        whaleRepository.deleteAll();
-        return whales;
-    }
-
-    public int deleteById(int whaleId){
-
-        Whale whaleToDelete = findById(whaleId);
-
-        whales.remove(whaleToDelete);
-        whaleRepository.delete(whaleToDelete);
-        return whaleId;
-    }
 
 
 

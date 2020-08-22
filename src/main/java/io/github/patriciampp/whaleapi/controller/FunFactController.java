@@ -25,19 +25,16 @@ public class FunFactController {
     @Autowired
     private WhaleService whaleService;
 
-    @Autowired
-    private FunFactRepository funFactRepository;
-
 
     @GetMapping(path = "/funfacts")
     public ResponseEntity<Set<FunFact>> findAll(){
+
         return ResponseEntity.ok(funFactService.getAll());
     }
 
     @GetMapping(path = "/funfacts/{id}")
     public ResponseEntity<FunFact> findById(@PathVariable ("id") int id){
-        FunFact funFact = funFactService.findById(id);
-        return ResponseEntity.ok(funFact);
+        return ResponseEntity.ok(funFactService.findById(id));
     }
 
     @DeleteMapping(path = "/funfacts")
@@ -46,9 +43,9 @@ public class FunFactController {
     }
 
     @DeleteMapping(path = "/funfacts/{id}")
-    public  ResponseEntity<Integer> deleteById(@PathVariable("id") int id) {
+    public  ResponseEntity<FunFact> deleteById(@PathVariable("id") int id) {
 
-        int deletedFunFact = funFactService.deleteById(id);
+        FunFact deletedFunFact = funFactService.deleteById(id);
         return ResponseEntity.ok(deletedFunFact);
     }
 
