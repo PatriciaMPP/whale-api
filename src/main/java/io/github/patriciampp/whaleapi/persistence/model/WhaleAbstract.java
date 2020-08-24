@@ -24,8 +24,8 @@ public abstract class WhaleAbstract{
     private String latinName;
     private String lifeSpan;
     private String description;
-    private Double size;
-    private Double weight;
+    private String size;
+    private String weight;
 
     @OneToMany(
             cascade = { CascadeType.ALL },
@@ -37,7 +37,7 @@ public abstract class WhaleAbstract{
     @ManyToMany
     private Set<Diet> diets = new HashSet<>();
 
-    public WhaleAbstract (String specieName, String latinName, String lifeSpan, String description, Double size, Double weight){
+    public WhaleAbstract (String specieName, String latinName, String lifeSpan, String description, String size, String weight){
         this.specieName = specieName;
         this.latinName = latinName;
         this.lifeSpan = lifeSpan;

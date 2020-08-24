@@ -1,7 +1,6 @@
 package io.github.patriciampp.whaleapi.controller;
 
 import io.github.patriciampp.whaleapi.persistence.model.Whale;
-import io.github.patriciampp.whaleapi.persistence.model.WhaleAbstract;
 import io.github.patriciampp.whaleapi.service.WhaleService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +45,8 @@ public class WhaleController {
         String latinName = whaleJSON.get("latinName").toString();
         String lifeSpan = whaleJSON.get("lifeSpan").toString();
         String description = whaleJSON.get("description").toString();
-        Double size = (Double) whaleJSON.get("size");
-        Double weight = (Double) whaleJSON.get("weight");
+        String size = whaleJSON.get("size").toString();
+        String weight = whaleJSON.get("weight").toString();
 
         Whale whale = new Whale (specieName, latinName, lifeSpan, description, size, weight);
         Whale whaleCreated = whaleService.add(whale);

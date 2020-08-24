@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -57,8 +56,8 @@ public class WhaleService {
         String latinName = whaleJSON.get("latinName").toString();
         String lifeSpan = whaleJSON.get("lifeSpan").toString();
         String description = whaleJSON.get("description").toString();
-        Double size = (Double) whaleJSON.get("size");
-        Double weight = (Double) whaleJSON.get("weight");
+        String size = whaleJSON.get("size").toString();
+        String weight = whaleJSON.get("weight").toString();
 
         whale.setSpecieName(specieName);
         whale.setLatinName(latinName);
