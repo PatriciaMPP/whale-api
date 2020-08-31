@@ -6,46 +6,34 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Service
 public class WhaleService {
 
-    private Set<Whale> whales;
+    //private Set<Whale> whales;
 
     @Autowired
     private WhaleRepository whaleRepository;
 
-    public Iterable<Whale> getAll(){
-        //Lists.newArrayList(whaleRepository.findAll());
-        return whaleRepository.findAll();
+    public Iterable<Whale> getAll(){return whaleRepository.findAll();
     }
 
     public Whale findById(int whaleId){
         return whaleRepository.findById(whaleId).get();
     }
 
-    public Set<Whale> deleteAll(){
+    public void deleteAll(){
         whaleRepository.deleteAll();
-        return whales;
     }
 
     public Boolean deleteById(int whaleId){
 
         Whale whaleToDelete = findById(whaleId);
-
-        whales.remove(whaleToDelete);
+        //whales.remove(whaleToDelete);
         whaleRepository.delete(whaleToDelete);
         return !whaleRepository.existsById(whaleId);
     }
 
     public Whale add(Whale whale){
-        if(whales == null) {
-            whales = new HashSet<>();
-        }
-
-        whales.add(whale);
         whaleRepository.save(whale);
         return whale;
     }

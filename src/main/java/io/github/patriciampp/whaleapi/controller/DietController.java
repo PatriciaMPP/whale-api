@@ -5,6 +5,7 @@ import io.github.patriciampp.whaleapi.persistence.repository.DietRepository;
 import io.github.patriciampp.whaleapi.service.DietService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class DietController {
     private DietRepository dietRepository;
 
     @GetMapping(path = "/diets")
-    public ResponseEntity<Set<Diet>> findAll() {
+    public ResponseEntity<Iterable<Diet>> findAll() {
         return ResponseEntity.ok(dietService.getAll());
     }
 
@@ -31,12 +32,12 @@ public class DietController {
     }
 
     @DeleteMapping(path = "/diets")
-    public ResponseEntity<Set<Diet>> deleteAll() {
-        return ResponseEntity.ok(dietService.deleteAll());
+    public ResponseEntity<Void> deleteAll() {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/diets/{id}")
-    public ResponseEntity<Diet> deleteById(@PathVariable("id") int id) {
+    public ResponseEntity<Boolean> deleteById(@PathVariable("id") int id) {
         return ResponseEntity.ok(dietService.deleteById(id));
     }
 

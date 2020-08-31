@@ -4,12 +4,12 @@ import io.github.patriciampp.whaleapi.persistence.model.Whale;
 import io.github.patriciampp.whaleapi.service.WhaleService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/whale-api")
@@ -17,7 +17,6 @@ public class WhaleController {
 
     @Autowired
     WhaleService whaleService;
-
 
     @GetMapping(path = "/whales")
     public ResponseEntity<Iterable<Whale>> find(){
@@ -30,8 +29,8 @@ public class WhaleController {
     }
 
     @DeleteMapping(path = "/whales")
-    public ResponseEntity<Set<Whale>> deleteAll(){
-        return ResponseEntity.ok(whaleService.deleteAll());
+    public ResponseEntity<Void> deleteAll(){
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/whales/{id}")
@@ -61,9 +60,5 @@ public class WhaleController {
         Whale whaleToUpdate = whaleService.findById(id);
         Whale whaleUpdated = whaleService.update(whaleToUpdate, whaleJSON);
         return ResponseEntity.ok(whaleUpdated);
-
-
     }
-
-
 }

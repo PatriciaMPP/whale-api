@@ -8,6 +8,7 @@ package io.github.patriciampp.whaleapi.controller;
         import io.github.patriciampp.whaleapi.service.WhaleService;
         import org.json.simple.JSONObject;
         import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.http.HttpStatus;
         import org.springframework.http.ResponseEntity;
         import org.springframework.web.bind.annotation.*;
         import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,8 +28,7 @@ public class FunFactController {
 
 
     @GetMapping(path = "/funfacts")
-    public ResponseEntity<Set<FunFact>> findAll(){
-
+    public ResponseEntity<Iterable<FunFact>> findAll(){
         return ResponseEntity.ok(funFactService.getAll());
     }
 
@@ -38,15 +38,13 @@ public class FunFactController {
     }
 
     @DeleteMapping(path = "/funfacts")
-    public ResponseEntity<Set<FunFact>> deleteAll(){
-        return ResponseEntity.ok(funFactService.deleteAll());
+    public ResponseEntity<Void> deleteAll(){
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/funfacts/{id}")
-    public  ResponseEntity<FunFact> deleteById(@PathVariable("id") int id) {
-
-        FunFact deletedFunFact = funFactService.deleteById(id);
-        return ResponseEntity.ok(deletedFunFact);
+    public  ResponseEntity<Boolean> deleteById(@PathVariable("id") int id) {
+    return ResponseEntity.ok(funFactService.deleteById(id));
     }
 
     @PostMapping(path = "/funfacts")
@@ -72,6 +70,4 @@ public class FunFactController {
         return ResponseEntity.ok(funFactUpdated);
 
     }
-
-
 }
