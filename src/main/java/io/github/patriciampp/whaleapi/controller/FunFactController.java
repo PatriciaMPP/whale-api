@@ -16,6 +16,7 @@ package io.github.patriciampp.whaleapi.controller;
         import java.net.URI;
         import java.util.Set;
 
+
 @RestController
 @RequestMapping(path = "/whale-api")
 public class FunFactController {

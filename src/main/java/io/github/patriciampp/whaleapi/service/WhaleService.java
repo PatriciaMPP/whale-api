@@ -6,16 +6,15 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class WhaleService {
-
-    //private Set<Whale> whales;
 
     @Autowired
     private WhaleRepository whaleRepository;
 
-    public Iterable<Whale> getAll(){return whaleRepository.findAll();
-    }
+    public Iterable<Whale> getAll(){return whaleRepository.findAll();}
 
     public Whale findById(int whaleId){
         return whaleRepository.findById(whaleId).get();
@@ -59,10 +58,34 @@ public class WhaleService {
     }
 
 
+    public Iterable<Whale> findWhalesByMinSize(int requestedMinSize){
+        Iterable<Whale> whalesList = getAll();
+        ArrayList<Whale> minSizeWhales = new ArrayList<>();
 
+        for(Whale whale : whalesList){
+           int minSize =  extractMinSizeFromSize(whale.getSize());
 
+           if(minSize >= requestedMinSize) {
+               minSizeWhales.add(whale);
+           }
+        }
 
+        return minSizeWhales;
+    };
 
+    // o que faz o metodo
+    // o que deve receber
+    // o que retorna
+    // @Param size: String, "between 10 and 30 meters"
+    public int extractMinSizeFromSize(String size){
+        String[] sizeElements = size.split(" ");
+        return Integer.parseInt(sizeElements[0]);
+    }
 
 
 }
+
+
+
+
+

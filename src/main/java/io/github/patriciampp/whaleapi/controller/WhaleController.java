@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(path = "/whale-api")
 public class WhaleController {
@@ -56,9 +57,16 @@ public class WhaleController {
 
     @PutMapping(path = "/whales/{id}")
     public ResponseEntity<Whale> update(@PathVariable ("id") int id, JSONObject whaleJSON){
-
+        System.out.println(id);
         Whale whaleToUpdate = whaleService.findById(id);
         Whale whaleUpdated = whaleService.update(whaleToUpdate, whaleJSON);
         return ResponseEntity.ok(whaleUpdated);
+    }
+
+    //Specific Methods
+
+    @GetMapping(path = "/whales/min-size/{min-size}")
+    public ResponseEntity<Iterable<Whale>> findMinSize(@PathVariable ("min-size") int minSize){
+        return ResponseEntity.ok(whaleService.findWhalesByMinSize(minSize));
     }
 }
