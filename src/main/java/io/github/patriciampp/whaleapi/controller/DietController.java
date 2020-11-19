@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
-
 @RestController
 @RequestMapping(path = "/whale-api")
 public class DietController {
@@ -23,6 +21,7 @@ public class DietController {
 
     @GetMapping(path = "/diets")
     public ResponseEntity<Iterable<Diet>> findAll() {
+
         return ResponseEntity.ok(dietService.getAll());
     }
 

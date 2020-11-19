@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -20,13 +22,24 @@ public class WhaleController {
     WhaleService whaleService;
 
     @GetMapping(path = "/whales")
-    public ResponseEntity<Iterable<Whale>> find(){
-        return ResponseEntity.ok(whaleService.getAll());
+    public ResponseEntity<ArrayList<Whale>> find(){
+
+        ArrayList<Whale> whaleList = whaleService.getAll();
+
+        if (whaleList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(whaleList, HttpStatus.OK);
     }
 
     @GetMapping(path = "/whales/{id}")
     public ResponseEntity<Whale> findById(@PathVariable ("id") int id){
-        return ResponseEntity.ok(whaleService.findById(id));
+        try{
+            return new ResponseEntity<>(whaleService.findById(id), HttpStatus.OK);
+        } catch(NoSuchElementException exception){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping(path = "/whales")

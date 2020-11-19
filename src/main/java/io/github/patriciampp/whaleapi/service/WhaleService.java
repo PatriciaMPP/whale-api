@@ -14,7 +14,9 @@ public class WhaleService {
     @Autowired
     private WhaleRepository whaleRepository;
 
-    public Iterable<Whale> getAll(){return whaleRepository.findAll();}
+    public ArrayList<Whale> getAll(){
+        return whaleRepository.findAll();
+    }
 
     public Whale findById(int whaleId){
         return whaleRepository.findById(whaleId).get();
