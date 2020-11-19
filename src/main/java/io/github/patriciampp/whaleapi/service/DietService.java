@@ -2,50 +2,39 @@ package io.github.patriciampp.whaleapi.service;
 
 import io.github.patriciampp.whaleapi.persistence.model.Diet;
 import io.github.patriciampp.whaleapi.persistence.repository.DietRepository;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Service
 public class DietService {
 
-    private Set<Diet> diets;
+    //private Set<Diet> diets;
 
     @Autowired
     private DietRepository dietRepository;
 
-    public Set<Diet> getAll(){
-        dietRepository.findAll();
-        return diets;
+    public Iterable<Diet> getAll(){
+        return dietRepository.findAll();
     }
 
     public Diet findById(int dietId){
         return dietRepository.findById(dietId).get();
     }
 
-    public Set<Diet> deleteAll(){
+    public void deleteAll(){
         dietRepository.deleteAll();
-        return diets;
     }
 
-    public Diet deleteById(int dietId){
+    public Boolean deleteById(int dietId){
 
         Diet dietToDelete = findById(dietId);
         dietRepository.delete(dietToDelete);
-        return dietToDelete;
-
+        return dietRepository.existsById(dietId);
     }
 
     public Diet add(Diet diet){
-
-        if(diets == null) {
-            diets = new HashSet<>();
-        }
-
-        diets.add(diet);
         dietRepository.save(diet);
         return diet;
     }

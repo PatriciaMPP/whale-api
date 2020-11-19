@@ -13,7 +13,7 @@ import java.util.Set;
 @Service
 public class FunFactService {
 
-    private Set<FunFact> funFacts;
+    //private Set<FunFact> funFacts;
 
     @Autowired
     private FunFactRepository funFactRepository;
@@ -21,10 +21,9 @@ public class FunFactService {
     @Autowired
     private WhaleService whaleService;
 
-    public Set<FunFact> getAll(){
+    public Iterable<FunFact> getAll(){
 
-        funFactRepository.findAll();
-        return funFacts;
+        return funFactRepository.findAll();
     }
 
     public FunFact findById(int funFactId){
@@ -32,25 +31,18 @@ public class FunFactService {
         return funFactRepository.findById(funFactId).get();
     }
 
-    public Set<FunFact> deleteAll(){
+    public void deleteAll(){
         funFactRepository.deleteAll();
-        return funFacts;
     }
 
-    public FunFact deleteById (int funFactId) {
+    public Boolean deleteById (int funFactId) {
 
         FunFact funFactToDelete = findById(funFactId);
         funFactRepository.delete(funFactToDelete);
-        return funFactToDelete;
-
+        return !funFactRepository.existsById(funFactId);
     }
 
     public FunFact add(FunFact funFact){
-        if(funFacts == null) {
-            funFacts = new HashSet<>();
-        }
-
-        funFacts.add(funFact);
         funFactRepository.save(funFact);
         return funFact;
     }

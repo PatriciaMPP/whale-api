@@ -6,20 +6,15 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.ArrayList;
 
 @Service
 public class WhaleService {
 
-    private Set<Whale> whales;
-
     @Autowired
     private WhaleRepository whaleRepository;
 
-    public Iterable<Whale> getAll(){
-        //Lists.newArrayList(whaleRepository.findAll());
+    public ArrayList<Whale> getAll(){
         return whaleRepository.findAll();
     }
 
@@ -27,26 +22,19 @@ public class WhaleService {
         return whaleRepository.findById(whaleId).get();
     }
 
-    public Set<Whale> deleteAll(){
+    public void deleteAll(){
         whaleRepository.deleteAll();
-        return whales;
     }
 
     public Boolean deleteById(int whaleId){
 
         Whale whaleToDelete = findById(whaleId);
-
-        whales.remove(whaleToDelete);
+        //whales.remove(whaleToDelete);
         whaleRepository.delete(whaleToDelete);
         return !whaleRepository.existsById(whaleId);
     }
 
     public Whale add(Whale whale){
-        if(whales == null) {
-            whales = new HashSet<>();
-        }
-
-        whales.add(whale);
         whaleRepository.save(whale);
         return whale;
     }
@@ -57,8 +45,8 @@ public class WhaleService {
         String latinName = whaleJSON.get("latinName").toString();
         String lifeSpan = whaleJSON.get("lifeSpan").toString();
         String description = whaleJSON.get("description").toString();
-        Double size = (Double) whaleJSON.get("size");
-        Double weight = (Double) whaleJSON.get("weight");
+        String size = whaleJSON.get("size").toString();
+        String weight = whaleJSON.get("weight").toString();
 
         whale.setSpecieName(specieName);
         whale.setLatinName(latinName);
@@ -72,10 +60,34 @@ public class WhaleService {
     }
 
 
+    public Iterable<Whale> findWhalesByMinSize(int requestedMinSize){
+        Iterable<Whale> whalesList = getAll();
+        ArrayList<Whale> minSizeWhales = new ArrayList<>();
 
+        for(Whale whale : whalesList){
+           int minSize =  extractMinSizeFromSize(whale.getSize());
 
+           if(minSize >= requestedMinSize) {
+               minSizeWhales.add(whale);
+           }
+        }
 
+        return minSizeWhales;
+    };
 
+    // o que faz o metodo
+    // o que deve receber
+    // o que retorna
+    // @Param size: String, "between 10 and 30 meters"
+    public int extractMinSizeFromSize(String size){
+        String[] sizeElements = size.split(" ");
+        return Integer.parseInt(sizeElements[0]);
+    }
 
 
 }
+
+
+
+
+
